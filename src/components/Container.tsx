@@ -1,5 +1,6 @@
 import BackButton from "../assets/icons/arrow-left.svg";
 import Logo from "../assets/images/logo.svg";
+import Button from "./Button";
 
 interface ContainerProps {
   hasBackButton: boolean;
@@ -17,11 +18,17 @@ const Container = ({
   children,
 }: ContainerProps) => {
   return (
-    <div className="bg-primary px-4 py-[42px] w-fit flex flex-col justify-center gap-8 rounded-2xl border-primary border-[1px]">
-      {hasBackButton && <img src={BackButton} alt="back-button" />}
-      {hasLogo && <img src={Logo} alt="back-button" />}
-      <h2>{header}</h2>
-      <p>{hero}</p>
+    <div className="bg-primary px-4 py-[42px] w-fit h-fit flex flex-col justify-center items-center gap-8 rounded-2xl border-primary border-[1px] relative m-auto top-24">
+      {hasBackButton && (
+        <Button type="button" variant="simple" onClick={() => {}}>
+          <img src={BackButton} alt="back-button" className="absolute left-4" />
+        </Button>
+      )}
+      <div className="text-center flex flex-col justify-center items-center gap-1">
+        {hasLogo && <img src={Logo} alt="back-button" className="w-16 pb-2" />}
+        <h2 className="text-md text-darkPrimary">{header}</h2>
+        <p className="text-sm text-darkSecondary">{hero}</p>
+      </div>
 
       {children}
     </div>

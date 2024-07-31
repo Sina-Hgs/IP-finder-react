@@ -7,9 +7,11 @@ export default {
         lightBackground: "#FAFAFA",
         primary: "#FFFFFF",
         secondary: "#F6F7F9",
+        bluePrimary: "#0C317C",
+        blueSecondary: "#1043A6",
       },
       colors: {
-        bluePrimary: "#1043A6",
+        bluePrimary: "#0C317C",
         blueSecondary: "#1043A6",
         darkPrimary: "#313235",
         darkSecondary: "#7E838F",
