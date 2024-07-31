@@ -9,6 +9,11 @@
   font-style: normal;
 }
 
+html {
+  scroll-behavior: smooth;
+  background-color: #fafafa;
+}
+
 /* 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
