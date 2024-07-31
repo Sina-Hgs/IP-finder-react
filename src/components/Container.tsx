@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import BackButton from "../assets/icons/arrow-left.svg";
 import Logo from "../assets/images/logo.svg";
 import Button from "./Button";
@@ -17,10 +18,17 @@ const Container = ({
   hero,
   children,
 }: ContainerProps) => {
+  const navigate = useNavigate();
   return (
     <div className="bg-primary px-4 py-[42px] w-fit h-fit flex flex-col justify-center items-center gap-8 rounded-2xl border-primary border-[1px] relative m-auto top-24">
       {hasBackButton && (
-        <Button type="button" variant="simple" onClick={() => {}}>
+        <Button
+          type="button"
+          variant="simple"
+          onClick={() => {
+            navigate("/");
+          }}
+        >
           <img src={BackButton} alt="back-button" className="absolute left-4" />
         </Button>
       )}
