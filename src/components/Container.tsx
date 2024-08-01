@@ -7,7 +7,7 @@ interface ContainerProps {
   hasBackButton: boolean;
   hasLogo: boolean;
   header: string;
-  hero: string;
+  hero: string | React.ReactNode;
   children: React.ReactNode;
 }
 
@@ -35,7 +35,7 @@ const Container = ({
       <div className="text-center flex flex-col justify-center items-center gap-1">
         {hasLogo && <img src={Logo} alt="back-button" className="w-16 pb-2" />}
         <h2 className="text-md text-darkPrimary">{header}</h2>
-        <p className="text-sm text-darkSecondary">{hero}</p>
+        <div className="text-sm text-darkSecondary">{hero}</div>
       </div>
 
       {children}

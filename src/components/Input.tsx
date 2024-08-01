@@ -1,4 +1,4 @@
-import { MutableRefObject } from "react";
+import { useEffect } from "react";
 
 interface InputProps {
   placeholder: string;
@@ -7,7 +7,8 @@ interface InputProps {
   regex: RegExp;
   error: string | null;
   setError: React.Dispatch<React.SetStateAction<string | null>>;
-  inputRef: MutableRefObject<HTMLInputElement | null>;
+  inputValue: string | undefined;
+  setInputValue: React.Dispatch<React.SetStateAction<string | undefined>>;
 }
 
 const Input = ({
@@ -17,7 +18,8 @@ const Input = ({
   error,
   setError,
   regex,
-  inputRef,
+  inputValue,
+  setInputValue,
 }: InputProps) => {
   const validateValue = (value: string) => {
     !regex.test(value)
@@ -25,14 +27,18 @@ const Input = ({
       : setError(null);
   };
 
+  useEffect(() => {
+    if (inputValue) validateValue(inputValue);
+  }, [inputValue]);
+
   return (
     <span className="flex flex-col items-end gap-1">
       <input
         placeholder={placeholder}
         type={type}
         required={required}
-        ref={inputRef}
-        onChange={() => validateValue(inputRef.current!.value)}
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
         className={`rounded-lg border-primary border-[1px] text-right text-sm w-64 px-2 py-2 placeholder:text-darkSecondary
        outline-none transition-all ${
          error ? `border-error focus:border-error` : `focus:border-bluePrimary`

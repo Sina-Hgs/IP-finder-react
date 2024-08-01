@@ -1,19 +1,22 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import Button from "../../../components/Button";
 import Input from "../../../components/Input";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setPhoneNumber } from "../../../store/slices/loginSlice";
 
-const LoginForm = () => {
-  const phoneRef = useRef<HTMLInputElement | null>(null);
+const LoginForm = (phoneNumber: any) => {
+  const [inputValue, setInputValue] = useState<string | undefined>(
+    phoneNumber.phoneNumber
+  );
+  console.log(phoneNumber, "PHONE");
   const [error, setError] = useState<string | null>("");
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleClick = () => {
-    if (phoneRef.current) dispatch(setPhoneNumber(phoneRef.current.value));
+    if (inputValue) dispatch(setPhoneNumber(inputValue));
     navigate("/otp");
   };
 
@@ -24,7 +27,8 @@ const LoginForm = () => {
         type="tel"
         required={true}
         regex={/^(?:\+98|0098|0)?9\d{9}$/}
-        inputRef={phoneRef}
+        inputValue={inputValue}
+        setInputValue={setInputValue}
         error={error}
         setError={setError}
       />
