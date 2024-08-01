@@ -9,7 +9,6 @@ const LoginForm = (phoneNumber: any) => {
   const [inputValue, setInputValue] = useState<string | undefined>(
     phoneNumber.phoneNumber
   );
-  console.log(phoneNumber, "PHONE");
   const [error, setError] = useState<string | null>("");
 
   const navigate = useNavigate();

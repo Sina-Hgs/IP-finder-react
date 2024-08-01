@@ -1,5 +1,4 @@
 import { useSelector } from "react-redux";
-import Button from "../../components/Button";
 import Container from "../../components/Container";
 import LoginForm from "./components/LoginForm";
 import { RootState } from "../../store/store";
@@ -9,7 +8,6 @@ const LoginPage = () => {
   const phoneNumber = useSelector(
     (state: RootState) => state.login.phoneNumber
   );
-  console.log(phoneNumber, "phone");
 
   return (
     <Container

@@ -4,6 +4,7 @@ import Container from "../../components/Container";
 import Button from "../../components/Button";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import OTPForm from "./components/OTPForm";
 
 const OTPPage = () => {
   const phoneNumber = useSelector(
@@ -21,7 +22,7 @@ const OTPPage = () => {
       hasLogo={true}
       header="کد تایید را وارد کنید"
       hero={
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center gap-1">
           <p>کد تایید برای شماره {phoneNumber} پیامک شد</p>
           <Button
             variant="link"
@@ -35,7 +36,7 @@ const OTPPage = () => {
         </div>
       }
     >
-      hi
+      <OTPForm />
     </Container>
   );
 };
