@@ -1,13 +1,20 @@
 import { useRef, useState } from "react";
 import Button from "../../../components/Button";
 import Input from "../../../components/Input";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
   const phoneRef = useRef<HTMLInputElement | null>(null);
   const [error, setError] = useState<string | null>("");
 
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/otp");
+  };
+
   return (
-    <form action="" className="flex flex-col items-center gap-6">
+    <form onSubmit={handleClick} className="flex flex-col items-center gap-6">
       <Input
         placeholder="شماره موبایل"
         type="number"
@@ -18,12 +25,7 @@ const LoginForm = () => {
         setError={setError}
       />
 
-      <Button
-        variant="primary"
-        onClick={() => {}}
-        type="submit"
-        disabled={error ? true : false}
-      >
+      <Button variant="primary" type="submit" disabled={error ? true : false}>
         ارسال کد تایید
       </Button>
     </form>

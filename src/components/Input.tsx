@@ -1,4 +1,4 @@
-import { MutableRefObject, useEffect, useState } from "react";
+import { MutableRefObject } from "react";
 
 interface InputProps {
   placeholder: string;
@@ -20,15 +20,9 @@ const Input = ({
   inputRef,
 }: InputProps) => {
   const validateValue = (value: string) => {
-    if (!regex.test(value)) {
-      console.log(value, "value");
-
-      setError("شماره تلفن وارد شده اشتباه است");
-    } else {
-      console.log(value);
-      setError(null);
-      // dispatch
-    }
+    !regex.test(value)
+      ? setError("شماره تلفن وارد شده اشتباه است")
+      : setError(null);
   };
 
   return (
