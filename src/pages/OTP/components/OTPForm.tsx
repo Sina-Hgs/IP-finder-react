@@ -1,6 +1,7 @@
 import { useState } from "react";
 import OTPInput from "./OTPInput";
 import Button from "../../../components/Button";
+import OTPReset from "./OTPReset";
 
 const OTPForm = () => {
   const [otpValue, setOtpValue] = useState("");
@@ -13,13 +14,16 @@ const OTPForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-2">
+    <form onSubmit={handleSubmit} className="flex flex-col gap-3">
       <OTPInput
         length={4}
         onDone={(otp) => {
           setOtpValue(otp);
         }}
       />
+
+      <OTPReset />
+
       <Button
         variant="primary"
         type="submit"
