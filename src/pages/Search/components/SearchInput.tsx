@@ -1,25 +1,33 @@
-import { useState, KeyboardEvent } from "react";
+import { KeyboardEvent } from "react";
 import inputSearchIcon from "../../../assets/icons/searchIconSecondary.svg";
 import ButtonSearchIcon from "../../../assets/icons/searchIcon.svg";
 import Button from "../../../components/Button";
+import { ipRegex } from "../ipRegex";
 
 interface SearchInputProps {
   onSearch: (query: string) => void;
+  inputValue: string;
+  setInputValue: React.Dispatch<React.SetStateAction<string>>;
+  isLoading: boolean;
+  showToast: () => void;
 }
 
-const SearchInput: React.FC<SearchInputProps> = ({ onSearch }) => {
-  const [inputValue, setInputValue] = useState<string>("");
-
-  // Function to handle search logic
+const SearchInput = ({
+  inputValue,
+  setInputValue,
+  onSearch,
+  isLoading,
+  showToast,
+}: SearchInputProps) => {
   const handleSearch = () => {
     if (inputValue.trim() !== "") {
-      onSearch(inputValue.trim());
-      setInputValue("");
+      ipRegex.test(inputValue.trim())
+        ? onSearch(inputValue.trim())
+        : showToast();
     }
     console.log("searching");
   };
 
-  // Handle Enter key press
   const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       handleSearch();
@@ -28,10 +36,10 @@ const SearchInput: React.FC<SearchInputProps> = ({ onSearch }) => {
 
   return (
     <div className="flex items-center justify-center w-full">
-      <Button onClick={handleSearch} variant="search">
+      <Button onClick={handleSearch} variant="search" disabled={isLoading}>
         <img src={ButtonSearchIcon} alt="search-logo" className="w-4" />
       </Button>
-      <div className="relative w-[50%]">
+      <div className="relative w-[60%]">
         <input
           type="text"
           value={inputValue}

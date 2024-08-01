@@ -3,19 +3,30 @@ import { getIPData } from "../../api/services/getIPData";
 import Container from "../../components/Container";
 import SearchInput from "./components/SearchInput";
 import Hero from "./components/Hero";
+import { useState } from "react";
+import Toast from "../../components/Toast";
 
 const App: React.FC = () => {
-  const { data, error, isPending } = useMutation({
-    mutationFn: async () => {
-      const response = await getIPData("3.126.70.218");
+  const [inputValue, setInputValue] = useState<string>("");
+
+  const getIP = useMutation({
+    mutationFn: async (ip: string) => {
+      const response = await getIPData(ip);
       console.log(response, "list");
       return response;
     },
     mutationKey: ["IP-data"],
   });
 
-  if (isPending) return <div>Loading...</div>;
-  if (error) return <div>Error: {(error as Error).message}</div>;
+  const [toastVisible, setToastVisible] = useState<boolean>(false);
+
+  const showToast = () => {
+    setToastVisible(true);
+  };
+
+  const removeToast = () => {
+    setToastVisible(false);
+  };
 
   return (
     <div className="bg-blocks">
@@ -25,8 +36,17 @@ const App: React.FC = () => {
         header="آی پی مد نظر خود را پیدا کنید"
         hero={<Hero />}
       >
-        <SearchInput onSearch={() => console.log("seaarch")} />
+        <SearchInput
+          inputValue={inputValue}
+          setInputValue={setInputValue}
+          onSearch={() => getIP.mutate(inputValue)}
+          isLoading={getIP.isPending}
+          showToast={showToast}
+        />
       </Container>
+      {toastVisible && (
+        <Toast message={"آی‌پی وارد شده اشتباه است"} onRemove={removeToast} />
+      )}
     </div>
   );
 };
