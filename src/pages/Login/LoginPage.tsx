@@ -1,8 +1,14 @@
-import Button from "../../components/Button";
+import { useSelector } from "react-redux";
 import Container from "../../components/Container";
 import LoginForm from "./components/LoginForm";
+import { RootState } from "../../store/store";
+import SignUp from "./components/SignUp";
 
 const LoginPage = () => {
+  const phoneNumber = useSelector(
+    (state: RootState) => state.login.phoneNumber
+  );
+
   return (
     <Container
       hasLogo={true}
@@ -10,14 +16,9 @@ const LoginPage = () => {
       header="به پنل مدیریت تسک پادرو خوش آمدید"
       hero="برای ورود، لطفا شماره موبایل خود را وارد کنید"
     >
-      <LoginForm />
+      <LoginForm phoneNumber={phoneNumber} />
 
-      <div className="text-sm flex gap-2 ">
-        <Button type="button" variant="link" onClick={() => {}}>
-          ثبت نام
-        </Button>
-        <p>حساب کاربری ندارید؟</p>
-      </div>
+      <SignUp />
     </Container>
   );
 };
