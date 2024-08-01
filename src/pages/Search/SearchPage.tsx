@@ -3,28 +3,35 @@ import { getIPData } from "../../api/services/getIPData";
 import Container from "../../components/Container";
 import SearchInput from "./components/SearchInput";
 import Hero from "./components/Hero";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Toast from "../../components/Toast";
 import { IPType } from "../../types/ipType";
 import IpCard from "./components/IpCard";
+import { ipV4Regex } from "./ipRegex";
+import IpCardSkeleton from "./components/IpCardSkeleton";
 
 const App: React.FC = () => {
   const [inputValue, setInputValue] = useState<string>("");
-  const [IPData, setIPData] = useState<IPType | undefined>(undefined);
+  const [IPData, setIPData] = useState<IPType>();
 
   const getIP = useMutation({
     mutationFn: async (ip: string) => {
       const response = await getIPData(ip);
-      console.log(response.location, "list");
-      setIPData({
-        ipAddress: inputValue,
-        city: response.location.city,
-        country: response.location.country,
-        lat: response.location.lat,
-        lng: response.location.lng,
-        region: response.location.region,
-      });
-      return response.location as IPType;
+      if (response.location) {
+        setIPData({
+          ipAddress: `${inputValue} ${
+            ipV4Regex.test(inputValue) ? "(IPv4)" : "(IPv6)"
+          }`,
+          city: response.location.city,
+          country: response.location.country,
+          lat: response.location.lat,
+          lng: response.location.lng,
+          region: response.location.region,
+        });
+      } else {
+        showToast();
+      }
+      return response;
     },
     mutationKey: ["IP-data"],
   });
@@ -39,10 +46,6 @@ const App: React.FC = () => {
     setToastVisible(false);
   };
 
-  useEffect(() => {
-    console.log(IPData);
-  }, [getIP.data]);
-
   return (
     <div className="bg-blocks">
       <Container
@@ -54,11 +57,15 @@ const App: React.FC = () => {
         <SearchInput
           inputValue={inputValue}
           setInputValue={setInputValue}
-          onSearch={() => getIP.mutate(inputValue)}
+          onSearch={() => {
+            getIP.mutate(inputValue);
+          }}
           isLoading={getIP.isPending}
           showToast={showToast}
         />
-        {IPData && <IpCard IPData={IPData} />}
+
+        {getIP.isPending && <IpCardSkeleton />}
+        {getIP.isSuccess && IPData && <IpCard IPData={IPData} />}
       </Container>
       {toastVisible && (
         <Toast message={"آی‌پی وارد شده اشتباه است"} onRemove={removeToast} />

@@ -20,12 +20,7 @@ const SearchInput = ({
   showToast,
 }: SearchInputProps) => {
   const handleSearch = () => {
-    if (inputValue.trim() !== "") {
-      ipRegex.test(inputValue.trim())
-        ? onSearch(inputValue.trim())
-        : showToast();
-    }
-    console.log("searching");
+    ipRegex.test(inputValue.trim()) ? onSearch(inputValue.trim()) : showToast();
   };
 
   const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
