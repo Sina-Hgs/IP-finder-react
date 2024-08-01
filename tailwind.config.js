@@ -21,6 +21,7 @@ export default {
       borderColor: {
         primary: "#EAECF0",
         bluePrimary: "#0C317C",
+        error: "#d10000",
       },
       fontSize: {
         sm: "14px",
