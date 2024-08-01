@@ -1,5 +1,8 @@
 import { useMutation } from "@tanstack/react-query";
 import { getIPData } from "../../api/services/getIPData";
+import Container from "../../components/Container";
+import SearchInput from "./components/SearchInput";
+import Hero from "./components/Hero";
 
 const App: React.FC = () => {
   const { data, error, isPending } = useMutation({
@@ -15,9 +18,15 @@ const App: React.FC = () => {
   if (error) return <div>Error: {(error as Error).message}</div>;
 
   return (
-    <div className="App">
-      <h1>Location Data:</h1>
-      <pre>{JSON.stringify(data, null, 2)}</pre>
+    <div>
+      <Container
+        hasBackButton={false}
+        hasLogo={false}
+        header="آی پی مد نظر خود را پیدا کنید"
+        hero={<Hero />}
+      >
+        <SearchInput />
+      </Container>
     </div>
   );
 };
