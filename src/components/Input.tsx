@@ -2,7 +2,7 @@ import { MutableRefObject } from "react";
 
 interface InputProps {
   placeholder: string;
-  type: "text" | "number";
+  type: "text" | "number" | "tel";
   required?: boolean;
   regex: RegExp;
   error: string | null;

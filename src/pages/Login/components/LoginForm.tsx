@@ -2,14 +2,18 @@ import { useRef, useState } from "react";
 import Button from "../../../components/Button";
 import Input from "../../../components/Input";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setPhoneNumber } from "../../../store/slices/loginSlice";
 
 const LoginForm = () => {
   const phoneRef = useRef<HTMLInputElement | null>(null);
   const [error, setError] = useState<string | null>("");
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleClick = () => {
+    if (phoneRef.current) dispatch(setPhoneNumber(phoneRef.current.value));
     navigate("/otp");
   };
 
@@ -17,7 +21,7 @@ const LoginForm = () => {
     <form onSubmit={handleClick} className="flex flex-col items-center gap-6">
       <Input
         placeholder="شماره موبایل"
-        type="number"
+        type="tel"
         required={true}
         regex={/^(?:\+98|0098|0)?9\d{9}$/}
         inputRef={phoneRef}
