@@ -1,23 +1,18 @@
-import { useState } from "react";
-import Toast from "../../../components/Toast";
 import CountdownTimer from "./CountdownTimer";
 
-const OTPReset = () => {
-  const [toastVisible, setToastVisible] = useState<boolean>(false);
+interface OTPResetProps {
+  showToast: () => void;
+  setToastMessage: React.Dispatch<React.SetStateAction<string>>;
+}
 
-  const showToast = () => {
-    setToastVisible(true);
-  };
-
-  const removeToast = () => {
-    setToastVisible(false);
+const OTPReset = ({ showToast, setToastMessage }: OTPResetProps) => {
+  const handleSendAgain = () => {
+    setToastMessage("کد برای شما مجدد ارسال شد");
+    showToast();
   };
   return (
     <>
-      <CountdownTimer handleSendAgain={showToast} />
-      {toastVisible && (
-        <Toast message="کد برای شما مجدد ارسال شد" onRemove={removeToast} />
-      )}
+      <CountdownTimer handleSendAgain={handleSendAgain} />
     </>
   );
 };

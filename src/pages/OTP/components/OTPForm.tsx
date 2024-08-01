@@ -1,20 +1,24 @@
-import { useState } from "react";
 import OTPInput from "./OTPInput";
 import Button from "../../../components/Button";
 import OTPReset from "./OTPReset";
 
-const OTPForm = () => {
-  const [otpValue, setOtpValue] = useState("");
+interface OTPFormProps {
+  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  otpValue: string;
+  setOtpValue: React.Dispatch<React.SetStateAction<string>>;
+  showToast: () => void;
+  setToastMessage: React.Dispatch<React.SetStateAction<string>>;
+}
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (otpValue == "1111") {
-      console.log("right");
-    }
-  };
-
+const OTPForm = ({
+  handleSubmit,
+  otpValue,
+  setOtpValue,
+  showToast,
+  setToastMessage,
+}: OTPFormProps) => {
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+    <form onSubmit={(e) => handleSubmit(e)} className="flex flex-col gap-3">
       <OTPInput
         length={4}
         onDone={(otp) => {
@@ -22,14 +26,14 @@ const OTPForm = () => {
         }}
       />
 
-      <OTPReset />
+      <OTPReset showToast={showToast} setToastMessage={setToastMessage} />
 
       <Button
         variant="primary"
         type="submit"
         disabled={otpValue.length == 4 ? false : true}
       >
-        ارسال کد تایید
+        تایید
       </Button>
     </form>
   );
