@@ -14,7 +14,7 @@ const formatTime = (seconds: number): string => {
 };
 
 const CountdownTimer = ({ handleSendAgain }: CountdownTimerProps) => {
-  const [timeLeft, setTimeLeft] = useState<number>(10);
+  const [timeLeft, setTimeLeft] = useState<number>(60);
   const [showLink, setShowLink] = useState<boolean>(false);
 
   useEffect(() => {
