@@ -51,13 +51,13 @@ const OTPInput = ({ length, onDone }: OTPInputProps) => {
   };
 
   return (
-    <div className="w-full flex items-center justify-center gap-x-2">
+    <div className="w-full flex items-center justify-center gap-x-2 ">
       {otp.map((value, index) => (
         <input
           required
           key={index}
           type="string"
-          className="rounded-lg border-primary border-[1px] text-center text-sm w-14 h-10 placeholder:text-darkSecondary
+          className="rounded-lg border-primary border-[1px] text-center text-sm w-14 max-[450px]:w-10 h-10 placeholder:text-darkSecondary
        outline-none transition-all focus:border-bluePrimary"
           maxLength={1}
           value={value}
