@@ -3,6 +3,9 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      backgroundImage: {
+        blocks: "url(src/assets/images/Background-pattern.svg)",
+      },
       backgroundColor: {
         lightBackground: "#FAFAFA",
         primary: "#FFFFFF",

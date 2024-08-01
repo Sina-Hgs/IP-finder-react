@@ -18,14 +18,14 @@ const App: React.FC = () => {
   if (error) return <div>Error: {(error as Error).message}</div>;
 
   return (
-    <div>
+    <div className="bg-blocks">
       <Container
         hasBackButton={false}
         hasLogo={false}
         header="آی پی مد نظر خود را پیدا کنید"
         hero={<Hero />}
       >
-        <SearchInput />
+        <SearchInput onSearch={() => console.log("seaarch")} />
       </Container>
     </div>
   );
