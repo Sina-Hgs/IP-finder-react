@@ -2,7 +2,6 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 import Container from "../../components/Container";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 import OTPForm from "./components/OTPForm";
 import Hero from "./components/Hero";
 
@@ -12,10 +11,6 @@ const OTPPage = () => {
   );
 
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (phoneNumber.length == 0) navigate("/");
-  }, [phoneNumber]);
 
   return (
     <Container

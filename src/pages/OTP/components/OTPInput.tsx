@@ -57,7 +57,7 @@ const OTPInput = ({ length, onDone }: OTPInputProps) => {
           required
           key={index}
           type="string"
-          className="rounded-lg border-primary border-[1px] text-centertext-sm w-14 h-10 placeholder:text-darkSecondary
+          className="rounded-lg border-primary border-[1px] text-center text-sm w-14 h-10 placeholder:text-darkSecondary
        outline-none transition-all focus:border-bluePrimary"
           maxLength={1}
           value={value}

@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import Button from "../../../components/Button";
 
+interface CountdownTimerProps {
+  handleSendAgain: () => void;
+}
+
 const formatTime = (seconds: number): string => {
   const minutes = Math.floor(seconds / 60);
   const remainingSeconds = seconds % 60;
@@ -9,7 +13,7 @@ const formatTime = (seconds: number): string => {
   ).padStart(2, "0")}`;
 };
 
-const CountdownTimer = () => {
+const CountdownTimer = ({ handleSendAgain }: CountdownTimerProps) => {
   const [timeLeft, setTimeLeft] = useState<number>(10);
   const [showLink, setShowLink] = useState<boolean>(false);
 
@@ -25,19 +29,11 @@ const CountdownTimer = () => {
     return () => clearInterval(timer);
   }, [timeLeft]);
 
-  const handleSendAgainClick = () => {
-    alert("Send Again clicked");
-  };
-
   return (
     <div className="flex flex-row-reverse justify-between items-center text-sm">
       <p className="text-sm text-darkSecondary">کد را دریافت نکردید؟</p>
       {showLink ? (
-        <Button
-          type="button"
-          variant="link"
-          onClick={() => handleSendAgainClick}
-        >
+        <Button type="button" variant="link" onClick={() => handleSendAgain()}>
           ارسال مجدد
         </Button>
       ) : (
