@@ -16,6 +16,7 @@ export default {
         darkPrimary: "#313235",
         darkSecondary: "#7E838F",
         lightPrimary: "#F9F5FF",
+        error: "#d10000",
       },
       borderColor: {
         primary: "#EAECF0",

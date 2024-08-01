@@ -20,7 +20,7 @@ const Container = ({
 }: ContainerProps) => {
   const navigate = useNavigate();
   return (
-    <div className="bg-primary px-4 py-[42px] w-fit h-fit flex flex-col justify-center items-center gap-8 rounded-2xl border-primary border-[1px] relative m-auto top-24">
+    <div className="bg-primary px-4 py-[42px] w-fit h-fit flex flex-col justify-center items-center gap-8 rounded-2xl border-primary border-[1px] relative m-auto top-24 transition-all">
       {hasBackButton && (
         <Button
           type="button"
