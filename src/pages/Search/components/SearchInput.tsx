@@ -34,7 +34,7 @@ const SearchInput = ({
       <Button onClick={handleSearch} variant="search" disabled={isLoading}>
         <img src={ButtonSearchIcon} alt="search-logo" className="w-4" />
       </Button>
-      <div className="relative w-[60%]">
+      <div className="relative w-[60%] max-[450px]:w-full">
         <input
           type="text"
           value={inputValue}

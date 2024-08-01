@@ -32,7 +32,7 @@ const Input = ({
   }, [inputValue]);
 
   return (
-    <span className="flex flex-col items-end gap-1">
+    <span className="flex flex-col  items-end gap-1">
       <input
         placeholder={placeholder}
         type={type}
@@ -40,7 +40,7 @@ const Input = ({
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
         className={`rounded-lg border-primary border-[1px] text-right text-sm w-64 px-2 py-2 placeholder:text-darkSecondary
-       outline-none transition-all ${
+       outline-none transition-all max-[450px]:w-[100%] ${
          error ? `border-error focus:border-error` : `focus:border-bluePrimary`
        }`}
       />
