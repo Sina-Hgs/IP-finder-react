@@ -46,7 +46,7 @@ const App: React.FC = () => {
 
   return (
     <div className="bg-blocks">
-      <Container hasBackButton={false} hasLogo={false} header="آی پی مد نظر خود را پیدا کنید" hero={<Hero />}>
+      <Container hasBackButton={false} header="آی پی مد نظر خود را پیدا کنید" hero={<Hero />}>
         <SearchInput
           inputValue={inputValue}
           setInputValue={setInputValue}

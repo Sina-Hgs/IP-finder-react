@@ -40,7 +40,6 @@ const OTPPage = () => {
     <>
       <Container
         hasBackButton={true}
-        hasLogo={true}
         header="کد تایید را وارد کنید"
         hero={
           <Hero

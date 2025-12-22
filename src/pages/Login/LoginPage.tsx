@@ -9,7 +9,6 @@ const LoginPage = () => {
 
   return (
     <Container
-      hasLogo={true}
       hasBackButton={false}
       header="HELLO WORLD!"
       hero="برای ورود، لطفا شماره موبایل خود را وارد کنید"
