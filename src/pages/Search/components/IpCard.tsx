@@ -1,4 +1,4 @@
-import { IPType } from "../../../types/ipType";
+import { IPType } from "../../../types/IPType";
 
 interface IpCardProps {
   IPData: IPType;

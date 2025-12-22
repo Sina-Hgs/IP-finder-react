@@ -5,10 +5,10 @@ import SearchInput from "./components/SearchInput";
 import Hero from "./components/Hero";
 import { useState } from "react";
 import Toast from "../../components/Toast";
-import { IPType } from "../../types/ipType";
 import IpCard from "./components/IpCard";
 import { ipV4Regex } from "./ipRegex";
 import IpCardSkeleton from "./components/IpCardSkeleton";
+import { IPType } from "../../types/IPType";
 
 const App: React.FC = () => {
   const [inputValue, setInputValue] = useState<string>("");
@@ -19,9 +19,7 @@ const App: React.FC = () => {
       const response = await getIPData(ip);
       if (response.location) {
         setIPData({
-          ipAddress: `${inputValue} ${
-            ipV4Regex.test(inputValue) ? "(IPv4)" : "(IPv6)"
-          }`,
+          ipAddress: `${inputValue} ${ipV4Regex.test(inputValue) ? "(IPv4)" : "(IPv6)"}`,
           city: response.location.city,
           country: response.location.country,
           lat: response.location.lat,
@@ -48,12 +46,7 @@ const App: React.FC = () => {
 
   return (
     <div className="bg-blocks">
-      <Container
-        hasBackButton={false}
-        hasLogo={false}
-        header="آی پی مد نظر خود را پیدا کنید"
-        hero={<Hero />}
-      >
+      <Container hasBackButton={false} hasLogo={false} header="آی پی مد نظر خود را پیدا کنید" hero={<Hero />}>
         <SearchInput
           inputValue={inputValue}
           setInputValue={setInputValue}
@@ -67,9 +60,7 @@ const App: React.FC = () => {
         {getIP.isPending && <IpCardSkeleton />}
         {getIP.isSuccess && IPData && <IpCard IPData={IPData} />}
       </Container>
-      {toastVisible && (
-        <Toast message={"آی‌پی وارد شده اشتباه است"} onRemove={removeToast} />
-      )}
+      {toastVisible && <Toast message={"آی‌پی وارد شده اشتباه است"} onRemove={removeToast} />}
     </div>
   );
 };
