@@ -11,18 +11,12 @@ interface ContainerProps {
   children: React.ReactNode;
 }
 
-const Container = ({
-  hasBackButton,
-  hasLogo,
-  header,
-  hero,
-  children,
-}: ContainerProps) => {
+const Container = ({ hasBackButton, hasLogo, header, hero, children }: ContainerProps) => {
   const navigate = useNavigate();
   return (
     <div className="bg-primary px-4 py-[42px] w-fit h-fit max-w-[80%] flex flex-col justify-center items-center gap-8 rounded-2xl border-primary border-[1px] relative m-auto top-24 transition-all max-[450px]:top-12">
       <div className="text-center flex flex-col justify-center items-center gap-1">
-        {hasLogo && <img src={Logo} alt="back-button" className="w-16 pb-2" />}
+        {false && <img src={Logo} alt="back-button" className="w-16 pb-2" />}
         {hasBackButton && (
           <Button
             type="button"
@@ -31,11 +25,7 @@ const Container = ({
               navigate("/");
             }}
           >
-            <img
-              src={BackButton}
-              alt="back-button"
-              className="absolute top-9 left-4"
-            />
+            <img src={BackButton} alt="back-button" className="absolute top-9 left-4" />
           </Button>
         )}
         <h2 className="text-md text-darkPrimary mb-1">{header}</h2>

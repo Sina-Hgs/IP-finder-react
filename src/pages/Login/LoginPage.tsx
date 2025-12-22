@@ -5,15 +5,13 @@ import { RootState } from "../../store/store";
 import SignUp from "./components/SignUp";
 
 const LoginPage = () => {
-  const phoneNumber = useSelector(
-    (state: RootState) => state.login.phoneNumber
-  );
+  const phoneNumber = useSelector((state: RootState) => state.login.phoneNumber);
 
   return (
     <Container
       hasLogo={true}
       hasBackButton={false}
-      header="به پنل مدیریت تسک پادرو خوش آمدید"
+      header="HELLO WORLD!"
       hero="برای ورود، لطفا شماره موبایل خود را وارد کنید"
     >
       <LoginForm phoneNumber={phoneNumber} />
